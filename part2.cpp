@@ -2,6 +2,7 @@
 #include <vector>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <fcntl.h> //open
 
 //Splits string based on splitChars and stores in the out vector
 void tokenize(const std::string &str, std::vector<std::string> &out, const std::string &splitChars = " "){
@@ -64,6 +65,7 @@ int main(){
         close(pipeFd[1]);
         char buf[128];
         ssize_t bytesRead = read(pipeFd[0], buf, sizeof(buf)-1);
+        close(pipeFd[0]);
         if(bytesRead < 0){
             std::cout << "Child had problem reading\n";
             return 3;
@@ -71,18 +73,30 @@ int main(){
         buf[bytesRead] = '\0';
 
         const int argvSize = 10;
-        const char *newArgv[argvSize];
-        int argvIdx = 0;
+        char *newArgv[argvSize];
+        int argvIdx = 1;
+        newArgv[0] = buf; //First arg is the command
         for(int i = 1; i < bytesRead; ++i){
             if(buf[i] == '\0'){
                 newArgv[argvIdx++] = &buf[i+1]; //This is fine because we tell read that the buffer is one smaller
-                if(argvIdx >= argvSize){ break; }
+                if(argvIdx >= argvSize-1){ break; }
             }
         }
+        newArgv[argvIdx] = nullptr;
+        int stdinFd = dup(STDOUT_FILENO);
+        int fileOutFd = open("outputredir.txt", O_APPEND | O_WRONLY);
+        if(fileOutFd < 0){
+            std::cout << "Error opening file for output redir\n";
+            return 4;
+        }
+        dup2(fileOutFd, STDOUT_FILENO);
+        execvp(buf, newArgv);
+        dup2(stdinFd, STDOUT_FILENO);
     }
     else{ //Parent
         close(pipeFd[0]);
         write(pipeFd[1], userIn.c_str(), userIn.length());
+        close(pipeFd[1]);
         wait(nullptr);
     }
 
