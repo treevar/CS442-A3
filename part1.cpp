@@ -24,8 +24,9 @@ int keyInFile(const std::string &key, const std::string &fileName){
     }
     std::string line {};
     while(inFile.good()){
-        std::getline(inFile, line);
-        if(key == line){ return 1; }
+        if(std::getline(inFile, line)){
+            if(key == line){ return 1; }
+        }
     }
     return 0;
 }
