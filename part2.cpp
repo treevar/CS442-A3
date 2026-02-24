@@ -4,41 +4,6 @@
 #include <sys/wait.h>
 #include <fcntl.h> //open
 
-//Splits string based on splitChars and stores in the out vector
-void tokenize(const std::string &str, std::vector<std::string> &out, const std::string &splitChars = " "){
-    out.clear();
-    if(str.length() < 2 || splitChars.length() < 1){ 
-        out.push_back(str);
-        return;
-    }
-
-    auto strStart = str.begin();
-    auto strEnd = str.begin()+1;
-
-    for(;strEnd != str.end(); ++strEnd){
-        if(splitChars.find(*strEnd) == std::string::npos){ continue; } //Not found
-        out.push_back({strStart, strEnd}); //[start, end)
-        strStart = strEnd + 1; //Set to the char after the removed char
-    }
-    //Input doesnt end with a splitChar
-    out.push_back({strStart, strEnd});
-}
-
-//Returns 0 on success, 1 if the out buffer wasnt large enough, and -1 on error
-int vecToArgv(const std::vector<std::string> &vec, const char **out, size_t outSize){
-    if(outSize == 0 || out == nullptr || vec.size() == 0){ return -1; }
-    size_t idx = 0;
-    for(auto &str : vec){
-        if(idx == outSize-1){ 
-            out[outSize-1] = nullptr;
-            return 1; 
-        }
-        out[idx++] = str.c_str();
-    }
-    out[idx] = nullptr;
-    return 0;
-}
-
 //replace a with b
 void replace(std::string &str, const char a, const char b){
     for(auto &c : str){
@@ -92,6 +57,7 @@ int main(){
         dup2(fileOutFd, STDOUT_FILENO);
         execvp(buf, newArgv);
         dup2(stdinFd, STDOUT_FILENO);
+        close(fileOutFd);
     }
     else{ //Parent
         close(pipeFd[0]);
@@ -99,9 +65,5 @@ int main(){
         close(pipeFd[1]);
         wait(nullptr);
     }
-
-
-    std::vector<std::string> tokens {};
-    tokenize(userIn, tokens);
     return 0;
 }
