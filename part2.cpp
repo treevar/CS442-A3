@@ -62,7 +62,7 @@ int main(){
         newArgv[argvIdx] = nullptr;
         int stdinFd = dup(STDOUT_FILENO);
         //Make file if not found, with owner read/write, group and others have read
-        int fileOutFd = open(outputFileName.c_str(), O_APPEND | O_WRONLY | O_CREAT, 644);
+        int fileOutFd = open(outputFileName.c_str(), O_APPEND | O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
         if(fileOutFd < 0){
             std::cout << "Error opening file for output redir\n";
             return 4;
