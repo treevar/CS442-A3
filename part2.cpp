@@ -4,10 +4,14 @@
 #include <sys/wait.h>
 #include <fcntl.h> //open
 
-//replace a with b
-void replace(std::string &str, const char a, const char b){
+//Repalce a with b
+//If replaceInStr is true false then chars that match a between " are ingored
+//If a is " replaceInsideStr is ignored
+void replace(std::string &str, const char a, const char b, bool replaceInStr = false){
+    bool insideStr = false;
     for(auto &c : str){
-        if(c == a){ c = b; }
+        if(c == a && !insideStr){ c = b; }
+        else if(!replaceInStr && c == '"'){ insideStr = !insideStr; }
     }
 }
 
