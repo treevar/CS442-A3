@@ -1,0 +1,45 @@
+Script started on 2026-02-24 16:35:30-06:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ ls -R
+[?2004l.:
+a3.txt  [0m[01;34mbin[0m  part1.cpp  part2.cpp  passkeys.txt
+
+./bin:
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ g++ part2.cpp -o [K[K[K[K[K[K[K[K[K1.cpp -o bin/part1
+[?2004l[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ cd bin[K[K[K[K[K[Kg++ part2.cpp -o bin/[pa[K[K[Kpart2
+[?2004l[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ cd bin
+[?2004l[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ ./part1
+[?2004lEnter 20 char long passkey: qwertyuiopasdfghjklz
+FOUND
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ ./part1
+[?2004lEnter 20 char long passkey: qwertyuiopasdfghjmnb
+NOT FOUND
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ cat ../passkeys.txt 
+[?2004lATOf7<kE:t)L.1XU-Y|R
+=@K,iFNg#?$j^1c|E!v1
+LO7uI8gXBDN3Fc$+Lb'u
+9qEn7|Oj9-?xj\UOYB0l
+qwertyuiopasdfghjklz
+kcm jdmmcjcjhnvcn hj
+hxjkjobnmxbxgfvsdhjc
+zx675jb34 78n w34nmd
+786 ,4 7y8 3w4, vcio
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ ./part2
+[?2004lEnter cmd: ls -la
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ cat outputredir.txt 
+[?2004ltotal 68
+drwxrwxr-x 2 trevor trevor  4096 Feb 24 16:36 .
+drwxrwxr-x 4 trevor trevor  4096 Feb 24 16:33 ..
+-rw-r--r-- 1 trevor trevor     0 Feb 24 16:36 outputredir.txt
+-rwxrwxr-x 1 trevor trevor 29592 Feb 24 16:36 part1
+-rwxrwxr-x 1 trevor trevor 25048 Feb 24 16:36 part2
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3/bin[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3/bin[00m$ ls [K[K[Kcd ../
+[?2004l[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ ls -R
+[?2004l.:
+a3.txt  [0m[01;34mbin[0m  part1.cpp  part2.cpp  passkeys.txt
+
+./bin:
+outputredir.txt  [01;32mpart1[0m  [01;32mpart2[0m
+[?2004h]0;trevor@trevor-pc: ~/Documents/code/opsys/proj3[01;32mtrevor@trevor-pc[00m:[01;34m~/Documents/code/opsys/proj3[00m$ exit
+[?2004lexit
+
+Script done on 2026-02-24 16:37:23-06:00 [COMMAND_EXIT_CODE="0"]
