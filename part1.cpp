@@ -32,6 +32,7 @@ int keyInFile(const std::string &key, const std::string &fileName){
 }
 
 int main(){
+    const std::string passkeyFileName {"../passkeys.txt"};
     std::string userIn {promptForKey(PASSKEY_LENGTH)};
     int childFd[2], parentFd[2];
     if(pipe(parentFd) != 0){
@@ -62,7 +63,7 @@ int main(){
         }
         buf[bytesRead] = '\0';
         //Send to parent
-        if(keyInFile(buf, "passkeys.txt") == 1){
+        if(keyInFile(buf, passkeyFileName) == 1){
             write(childFd[1], "FOUND", 6);
         }
         else{
