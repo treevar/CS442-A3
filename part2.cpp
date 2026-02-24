@@ -55,9 +55,8 @@ int main(){
             return 4;
         }
         dup2(fileOutFd, STDOUT_FILENO);
-        execvp(buf, newArgv);
-        dup2(stdinFd, STDOUT_FILENO);
         close(fileOutFd);
+        execvp(buf, newArgv);
     }
     else{ //Parent
         close(pipeFd[0]);
